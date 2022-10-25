@@ -9,3 +9,4 @@
 
 # Reading and explorations.
 1. Do read about JSESSIONID how and when it gets created and destroyed, what is the significance when to use it.
+2. Read about servlets and filters.
