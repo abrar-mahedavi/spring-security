@@ -7,8 +7,27 @@
 5. https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
 6. Add properties to override the username and password in application.properties.
 7. Spring security internal flow
-   ![Internal Flow](img.png)
-8. 
+   ![Internal Flow](img.png) 
+8. Debugging
+   1. DefaultLoginPageGeneratingFilter ->  generateLoginPageHtml()
+   2. Read about AbstractSecurityInterceptor -> finallyInvocation()
+   3. UsernamePasswordAuthenticationFilter -> attemptAuthentication()
+   4. ProviderManager -> authenticate()
+   5. AbstractUserDetailsAuthenticationProvider(DaoAuthenticationProvider) ->authenticate()
+   6. InMemoryUserDetailsManager -> loadUserByUsername()
+9. Spring security sequence diagram.
+   ![Internal Flow](img_1.png)
+   1) User trying to access a secure page for the first time.
+   2) Behind the scenes few filters like AbstractSecurityInterceptor, DefaultLoginPageGeneratingFilter identify that the user is not logged in & redirect the user to login page.
+   3) User entered his credentials and the request is intercepted by filters
+   4) Filters like UsernamePasswordAuthenticationFilter, extracts the username, password from the request and form an object of UsernamePasswordAuthenticationToken which is an implementation of Authentication interface. With the object created it invokes authenticate() method of ProviderManager.
+   5) ProviderManager which is an implementation of AuthenticationManager identify the list of Authentication providers available that are supporting given authentication object style. In the default behaviour, authenticate() method of DaoAuthenticationProvider will be invoked by ProviderManager
+   6) DaoAuthenticationProvider invokes the method loadUserByUsername() of InMemoryUserDetailsManager to load the user details from memory. Once the user details loaded, it takes help from the default password encoder implementation to compare the password and validate if the user is authentic or not.
+   7) At last, it returns the Authentication object with the details of authentication success or not to ProviderManager
+   8) ProviderManager checks if authentication is successful or not. If not, it will try with other available AuthenticationProviders. Otherwise, it simply returns the authentication details to the filters
+   9) The Authentication object is stored in the SecurityContext object by the filter for future use and the response will be returned to the end user.
+10. Spring security flow chart.
+    ![Internal Flow](img_2.png)
 
 # Reading and explorations.
 1. Do read about JSESSIONID how and when it gets created and destroyed, what is the significance when to use it.
