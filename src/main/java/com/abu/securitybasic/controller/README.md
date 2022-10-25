@@ -28,6 +28,7 @@
    9) The Authentication object is stored in the SecurityContext object by the filter for future use and the response will be returned to the end user.
 10. Spring security flow chart.
     ![Internal Flow](img_2.png)
+11. JSESSIONID used to maintain multiple request of the user.
 
 # Reading and explorations.
 1. Do read about JSESSIONID how and when it gets created and destroyed, what is the significance when to use it.
