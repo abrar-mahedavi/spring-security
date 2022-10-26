@@ -16,7 +16,7 @@ public class AccountController {
      *
      * @return the string
      */
-    @GetMapping(name = "/my-account")
+    @GetMapping("/my-account")
     public String getAccountDetails(){
         return "My account details.";
     }

@@ -46,6 +46,36 @@
    }
    ```
 2. The class WebSecurityConfigurerAdapter -> configure(HttpSecurity http) is deprecated so do not use. 
+3. We can secure the web application API's, path as per our custom requirements using Spring Security framework like below.
+   ```text
+   @Bean
+   @Order(SecurityProperties.BASIC_AUTH_ORDER)
+   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+           http.authorizeHttpRequests()
+                .antMatchers("/api/v1/my-account", "/api/v1/my-balance", "/api/v1/my-loans", "/api/v1/my-cards")
+                .authenticated()
+                .antMatchers("/notices", "/contact")
+                .permitAll()
+                .and().httpBasic()
+                .and().formLogin();
+        return http.build();
+   }
+   ```
+4. To logout of the session use the `http://localhost:8080/logout`
+5. If you want to deny all the request \
+   `Note :- Not for production.`
+   ```text
+   @Bean
+   @Order(SecurityProperties.BASIC_AUTH_ORDER)
+   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+           http.authorizeHttpRequests()
+                .antRequests().denyAll()
+                .and().httpBasic()
+                .and().formLogin();
+        return http.build();
+   }
+   ```
+6. 
 
 # Reading and explorations.
 1. Do read about JSESSIONID how and when it gets created and destroyed, what is the significance when to use it.
