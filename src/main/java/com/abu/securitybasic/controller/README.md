@@ -113,11 +113,29 @@
         }
         ```
       1. We need User object which requires a password encoder and role.
-   2.
-   
-2. sad
-3. ssad
-4. 
+   2. Where we don't define password encoder while creating the user details.Instead, a separate PasswordEncoder bean will be created 
+      ```text 
+         @Bean
+         public InMemoryUserDetailsManager userDetailsService() {
+            /**
+            * Approach 2 where we don't define password encoder
+            * while creating the user details. Instead a separate
+            * PasswordEncoder bean will be created.
+            */
+            InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
+            UserDetails admin = User.withUsername("admin").password("12345").authorities("admin").build();
+            UserDetails user = User.withUsername("user").password("12345").authorities("read").build();
+            userDetailsService.createUser(admin);
+            userDetailsService.createUser(user);
+            return userDetailsService; 
+         }
+      
+         @Bean
+         public PasswordEncoder passwordEncoder() {
+            return NoOpPasswordEncoder.getInstance();
+         }
+         ```
+2. 
 
 
 # Reading and explorations.
