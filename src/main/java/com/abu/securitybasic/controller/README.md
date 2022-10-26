@@ -89,10 +89,43 @@
    }
    ```
 
+## Section 3
+1. Instead of defining a single user inside application.properties as a next step we can define multiple users along with their authorities with help of InMemoryDetailsManger & User Details
+   1. Approach 1 where we use withDefaultPasswordEncoder() method while creating the user details
+        ```text
+        @Bean
+        public InMemoryUserDetailsManager userDetailsService() {
+            /**
+            * Approach 1 where we use withDefaultPasswordEncoder() method
+            * while creating the user details
+            */
+            UserDetails admin = User.withDefaultPasswordEncoder()
+                                .username("admin")
+                                .password("12345")
+                               .authorities("admin")
+                               .build();
+            UserDetails user = User.withDefaultPasswordEncoder()
+                                .username("user")
+                                .password("12345")
+                                .authorities("read")
+                               .build();
+        return new InMemoryUserDetailsManager(admin, user);
+        }
+        ```
+      1. We need User object which requires a password encoder and role.
+   2.
+   
+2. sad
+3. ssad
+4. 
+
+
 # Reading and explorations.
 1. Do read about JSESSIONID how and when it gets created and destroyed, what is the significance when to use it.
 2. Read about servlets and filters.
 3. Read about spring security filters (approx 25 filters). 
+4. What are the default authorities.
+5. 
 
 # Links
 1. https://www.baeldung.com/spring-security-registered-filters#:~:text=Important%20Spring%20Security%20Filters&text=AnonymousAuthenticationFilter%3A%20when%20there's%20no%20authentication,ExceptionTranslationFilter%3A%20catch%20Spring%20Security%20exceptions
@@ -101,4 +134,5 @@
 4. https://www.javadevjournal.com/spring-security/spring-security-filters/
 5. https://ckinan.com/blog/spring-security-filter-chain/
 6. https://visweshwar.medium.com/debugging-a-custom-spring-security-filterchain-3a2ea3f5ee38
-7. 
+7. https://docs.spring.io/spring-security/site/docs/5.2.11.RELEASE/reference/html/authorization.html
+8. 
