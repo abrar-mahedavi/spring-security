@@ -1,5 +1,7 @@
 # Learnings.
 
+## Section 1
+
 1. After adding the spring security dependency you api is secured by default.
 2. The username is user and the password you can see on the terminal from which you ran the project.
 3. Once you use the username and password you will be able to access the api.
@@ -29,6 +31,21 @@
 10. Spring security flow chart.
     ![Internal Flow](img_2.png)
 11. JSESSIONID used to maintain multiple request of the user.
+
+## Section 2
+
+1. By default Spring security framework protects all the paths present inside the web application.This behaviour is due to code present inside the method defaultSecurityFilterChain(HttpSecurity http) of class SpringBootWebSecurityConfiguration 
+   ```text
+   @Bean
+   @Order(SecurityProperties.BASIC_AUTH_ORDER)
+   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests().anyRequest().authenticated();
+      http.formLogin();
+      http.httpBasic();
+      return http.build();
+   }
+   ```
+2. The class WebSecurityConfigurerAdapter -> configure(HttpSecurity http) is deprecated so do not use. 
 
 # Reading and explorations.
 1. Do read about JSESSIONID how and when it gets created and destroyed, what is the significance when to use it.
