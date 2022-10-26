@@ -135,7 +135,22 @@
             return NoOpPasswordEncoder.getInstance();
          }
          ```
-2. 
+2. User Management important classes and interfaces.
+   ![Internal Flow](img_3.png)
+3. org.springframework.security.core.userdetails.UserDetails.java \
+   Has all the functions
+4. What is the significance of Authentication object and UserDetails
+   ![Internal Flow](img_4 .png)
+5. org.springframework.security.core.Authentication
+6. javax.security.auth.Subject.Principal.
+7. UserDetailsService -> loadUserByUsername()
+8. UserDetailsManager extends UserDetailsService
+9. Add the ldap dependency.
+10. UserDetailsManager implementations. 
+    1. InMemoryUserDetailsManager 
+    2. JdbcUserDetailsManager -> Connection with database
+    3. LdapUserDetailsManager ->
+
 
 
 # Reading and explorations.
