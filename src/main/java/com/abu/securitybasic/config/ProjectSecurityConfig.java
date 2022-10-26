@@ -55,6 +55,18 @@ public class ProjectSecurityConfig {
         return http.build();
         */
 
+        /**
+         * Configuration to permit all the requests
+         */
+		/*
+		http.authorizeHttpRequests()
+                .anyRequest().permitAll()
+				.and().httpBasic()
+                .and().formLogin();
+        return http.build();
+        */
+
+
     }
 
 }

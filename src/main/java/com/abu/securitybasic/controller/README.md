@@ -75,7 +75,19 @@
         return http.build();
    }
    ```
-6. 
+6. We can permit all the requests coming towards our web application API's, Paths using Spring Security framework like shown below
+   `Note :- Not for test/dev environmnet.`
+   ```text
+   @Bean 
+   @Order(SecurityProperties.BASIC_AUTH_ORDER)
+   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+           http.authorizeHttpRequests()
+                .antRequests().permitAll()
+                .and().httpBasic()
+                .and().formLogin();
+        return http.build();
+   }
+   ```
 
 # Reading and explorations.
 1. Do read about JSESSIONID how and when it gets created and destroyed, what is the significance when to use it.
