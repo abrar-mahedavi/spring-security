@@ -13,6 +13,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.sql.DataSource;
+
 /**
  * The type Project security config.
  */
@@ -76,6 +78,7 @@ public class ProjectSecurityConfig {
 
     }
 
+    /*
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         /**
@@ -95,10 +98,12 @@ public class ProjectSecurityConfig {
                 .build();
         return new InMemoryUserDetailsManager(admin, user);
          */
-        /**
-         * Approach 2 where we don't define password encoder while creating the user details. Instead, a separate
-         * PasswordEncoder bean will be created.
-         */
+
+    /**
+     * Approach 2 where we don't define password encoder while creating the user details. Instead, a separate
+     * PasswordEncoder bean will be created.
+     */
+        /*
         UserDetails admin = User.withUsername("admin")
                 .password("12345")
                 .authorities("admin")
@@ -108,6 +113,12 @@ public class ProjectSecurityConfig {
                 .authorities("read")
                 .build();
         return new InMemoryUserDetailsManager(admin, user);
+         */
+//    }
+
+    @Bean
+    public UserDetailsService userDetailsService(DataSource dataSource){
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean

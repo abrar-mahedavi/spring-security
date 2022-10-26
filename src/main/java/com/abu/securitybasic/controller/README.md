@@ -150,6 +150,40 @@
     1. InMemoryUserDetailsManager 
     2. JdbcUserDetailsManager -> Connection with database
     3. LdapUserDetailsManager ->
+11. Setup the database.
+    1. Note for free mysql database.
+       1. https://www.freemysqlhosting.net/
+       2. https://sqlectron.github.io/
+    2. https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/jdbc.html
+    3. https://stackoverflow.com/questions/24174884/spring-security-jdbc-authentication-default-schema-error-when-using-postgresql
+       1. create database spring-security
+       2. Execute the below script 
+       ```roomsql
+       DROP TABLE IF EXISTS users;
+       DROP TABLE IF EXISTS authorities;
+       
+       CREATE TABLE users (
+       id    SERIAL,
+       username VARCHAR(50)  NOT NULL,
+       password VARCHAR(100) NOT NULL,
+       enabled  INT      NOT NULL DEFAULT 1,
+       PRIMARY KEY (username)
+       );
+       
+       CREATE TABLE authorities (
+       id    SERIAL,
+       username  VARCHAR(50) NOT NULL,
+       authority VARCHAR(50) NOT NULL,
+       FOREIGN KEY (username) 
+       REFERENCES users (username));
+       ```
+       3. Insert data in the above tables
+       ```roomsql
+          INSERT  INTO users (username, password, enabled) values ('user','pass',1);
+          INSERT  INTO authorities (username, authority)values ('user', 'ROLE_USER');
+          INSERT  INTO users (username, password, enabled) values ('happy','12345',1);
+          INSERT  INTO authorities (username, authority)values ('user', 'write');
+       ```
 
 
 
