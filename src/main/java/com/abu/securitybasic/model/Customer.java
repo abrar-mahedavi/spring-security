@@ -9,7 +9,9 @@ import javax.persistence.Id;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GenericGenerator(name = "native", strategy = "native")
 	private int id;
 	private String email;
 	private String pwd;

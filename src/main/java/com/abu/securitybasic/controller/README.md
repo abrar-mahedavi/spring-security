@@ -185,18 +185,17 @@
           INSERT  INTO authorities (username, authority)values ('user', 'write');
        ```
 12. Use custom tables and not the spring secutity tables.
-    1. Create the table 
+    1. Create the table
        ```roomsql
-         CREATE TABLE `customer` (
-         `id` int NOT NULL AUTO_INCREMENT,
-         `email` varchar(45) NOT NULL,
-         `pwd` varchar(45) NOT NULL,
-         `role` varchar(45) NOT NULL,
-         PRIMARY KEY (`id`)
-         );
-
-         INSERT INTO `customer` (`email`, `pwd`, `role`)
-         VALUES ('johndoe@example.com', '54321', 'admin')
+        CREATE TABLE customer (
+        id SERIAL,
+        email varchar(45) NOT null unique,
+        pwd varchar(45) NOT NULL,
+        role varchar(45) NOT NULL,
+        PRIMARY KEY (id)
+        );
+        INSERT INTO customer (email, pwd, role)
+        VALUES ('johndoe@example.com', '54321', 'admin')
        ```
     2. Instead of using the user and authority table we have created our custom table for secrurity.
     3. Add a SpringSecurityUserDetails which implements UserDetailsService
@@ -209,6 +208,12 @@
        return new JdbcUserDetailsManager(dataSource);
        } 
        ```
+13. Add login controller to register new user.
+    1. Add the endpoint on config to permitAll().
+    2. It won't work as by default the csrf is enable().
+    3. It won't work again as we need to update the @Id field of Entity.
+       1. @GeneratedValue(strategy = GenerationType.IDENTITY)
+    4. 
 
 
 

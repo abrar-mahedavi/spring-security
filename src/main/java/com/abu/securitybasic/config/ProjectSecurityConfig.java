@@ -44,10 +44,11 @@ public class ProjectSecurityConfig {
          * Custom configurations as per our requirement
          */
 
-        http.authorizeHttpRequests()
+        http.csrf().disable()
+                .authorizeHttpRequests()
                 .antMatchers("/api/v1/my-account", "/api/v1/my-balance", "/api/v1/my-loans", "/api/v1/my-cards")
                 .authenticated()
-                .antMatchers("/notices", "/contact")
+                .antMatchers("/notices", "/contact","/api/v1/register")
                 .permitAll()
                 .and().httpBasic()
                 .and().formLogin();
