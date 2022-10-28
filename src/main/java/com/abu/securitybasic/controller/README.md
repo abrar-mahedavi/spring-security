@@ -184,6 +184,31 @@
           INSERT  INTO users (username, password, enabled) values ('happy','12345',1);
           INSERT  INTO authorities (username, authority)values ('user', 'write');
        ```
+12. Use custom tables and not the spring secutity tables.
+    1. Create the table 
+       ```roomsql
+         CREATE TABLE `customer` (
+         `id` int NOT NULL AUTO_INCREMENT,
+         `email` varchar(45) NOT NULL,
+         `pwd` varchar(45) NOT NULL,
+         `role` varchar(45) NOT NULL,
+         PRIMARY KEY (`id`)
+         );
+
+         INSERT INTO `customer` (`email`, `pwd`, `role`)
+         VALUES ('johndoe@example.com', '54321', 'admin')
+       ```
+    2. Instead of using the user and authority table we have created our custom table for secrurity.
+    3. Add a SpringSecurityUserDetails which implements UserDetailsService
+    4. Also need to add an entity (i.e Customer entity)
+    5. Also need to add a repository. (i.e CustomerRepository )
+    6. This won't work unless and untill you comment the below bean
+       ```text
+       @Bean
+       public UserDetailsService userDetailsService(DataSource dataSource){
+       return new JdbcUserDetailsManager(dataSource);
+       } 
+       ```
 
 
 
