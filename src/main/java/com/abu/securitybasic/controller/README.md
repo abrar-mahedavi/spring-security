@@ -215,6 +215,12 @@
        1. @GeneratedValue(strategy = GenerationType.IDENTITY)
     4. 
 
+## Section 4
+1. Storing the password in a plain text inside a storage system like DB will have integrity & confidentiality issues. So this is not recommended approach for Production.
+2. What is Encoding vs Encryption vs Hashing 
+   ![Internal Flow](img_5.png)
+3. Encoding :- transform one from to another and can be decoded easily.
+4. Encryption :- transform one from to another with help of the secrete and can decrypted with secrete. 
 
 
 # Reading and explorations.
