@@ -226,6 +226,10 @@
 7. Default NoOpPasswordEncoder encoder is used which is not recommended in production.
 8. This PasswordEncoder is not secure. Instead use an adaptive one way function like BCryptPasswordEncoder, Pbkdf2PasswordEncoder, or SCryptPasswordEncoder. Even better use DelegatingPasswordEncoder which supports password upgrades.
 9. https://bcrypt-generator.com/ to test the BCryptPasswordEncoder.
+10. How is password validated. 
+    ![Internal Flow](img_7.png) 
+11. 
+
 
 
 # Reading and explorations.
