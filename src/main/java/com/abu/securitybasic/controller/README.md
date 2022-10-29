@@ -221,6 +221,11 @@
    ![Internal Flow](img_5.png)
 3. Encoding :- transform one from to another and can be decoded easily.
 4. Encryption :- transform one from to another with help of the secrete and can decrypted with secrete. 
+5. Hashing :- A new hash for same string but the hash value would be same even if the hash string is different.
+6. ![Internal Flow](img_6.png)
+7. Default NoOpPasswordEncoder encoder is used which is not recommended in production.
+8. This PasswordEncoder is not secure. Instead use an adaptive one way function like BCryptPasswordEncoder, Pbkdf2PasswordEncoder, or SCryptPasswordEncoder. Even better use DelegatingPasswordEncoder which supports password upgrades.
+9. https://bcrypt-generator.com/ to test the BCryptPasswordEncoder.
 
 
 # Reading and explorations.
