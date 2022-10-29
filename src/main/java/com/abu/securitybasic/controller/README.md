@@ -228,7 +228,17 @@
 9. https://bcrypt-generator.com/ to test the BCryptPasswordEncoder.
 10. How is password validated. 
     ![Internal Flow](img_7.png) 
-11. 
+11. Details of PasswordEncoder.
+    ![Internal Flow](img_8.png)
+12. Use the below for production.
+    BCryptPasswordEncoder :- Clients can optionally supply a "version" ($2a, $2b, $2y) and a "strength" (a.k.a. log rounds in BCrypt) and a SecureRandom instance. The larger the strength parameter the more work will have to be done (exponentially) to hash the passwords. The default value is 10.
+    SCryptPasswordEncoder :- Clients can optionally supply a cpu cost parameter, a memory cost parameter and a parallelization parameter.
+    Argon2PasswordEncoder :- Clients can optionally supply the length of the salt to use, the length of the generated hash, a cpu cost parameter, a memory cost parameter and a parallelization parameter.
+13. To Implement BCryptPasswordEncoder
+    1. Update the passwordEncoder bean to return new BCryptPasswordEncoder();
+    2. Update the password when it is stored in database.
+    3. There is a pattern in BCrypt $2a $2y $2b this are the version.
+14. org.springframework.security.crypto has all the password encoders.
 
 
 
