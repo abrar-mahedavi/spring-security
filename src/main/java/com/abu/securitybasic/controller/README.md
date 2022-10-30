@@ -240,6 +240,17 @@
     3. There is a pattern in BCrypt $2a $2y $2b this are the version.
 14. org.springframework.security.crypto has all the password encoders.
 
+## Section 5
+1. Understanding authentication provider and Implement it.
+   ![Internal Flow](img_9.png)
+2. Details of authentication providers.
+   ![Internal Flow](img_10.png)
+3. Implementation of custom AuthenticationProvider.
+   1. Add a class which implements the AuthenticationProvider.
+   2. Remove the class which implements the UserDetails.
+   3. It will clear the credentials after the authentication is successfull but set the isAuthenticated to be true.
+4. Sequence flow.
+   ![Internal Flow](img_11.png)
 
 
 # Reading and explorations.
